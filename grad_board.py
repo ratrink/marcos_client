@@ -106,8 +106,9 @@ class OCRA1:
         init_words = [
             # lower 24 bits sent to ocra1, upper 8 bits used to control ocra1 serialiser channel + broadcast
             0x00400004, 0x02400004, 0x04400004, 0x07400004, # reset DACs to power-on values
-            0x00200002, 0x02200002, 0x04200002, 0x07200002, # set internal amplifier
-            0x00100000, 0x02100000, 0x04100000, 0x07100000, # set outputs to 0
+            # 0x00200002, 0x02200002, 0x04200002, 0x07200002, # set internal amplifier
+            0x00100480, 0x02100480, 0x04100480, 0x07100480, # set outputs to 0
+            0x00200002, 0x02200002, 0x04200002, 0x07200002, # set internal amplifier maybe 198
         ]
 
         # configure main grad ctrl word first, in particular switch it to update the serialiser strobe only in response to LSB changes;
@@ -123,6 +124,9 @@ class OCRA1:
             self.server_command({'direct': 0x02000000 | (iw >> 16)})
             self.server_command({'direct': 0x01000000 | (iw & 0xffff)})
 
+            print(hex(iw))
+            print("done " + str(k))
+            
         # restore main grad ctrl word to its default value, and reset the OCRA1 iface core
         self.server_command({'direct': 0x00000000})
 

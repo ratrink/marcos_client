@@ -4,10 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import experiment as ex
 from local_config import grad_board
-import time
-import warnings
-warnings.filterwarnings("ignore")
-
 
 import pdb
 st = pdb.set_trace
@@ -377,22 +373,10 @@ if __name__ == "__main__":
     # import cProfile
     # cProfile.run('test_grad_echo_loop()')
     # for k in range(100):
-    print("Gradient Echo")
     grad_echo(lo_freq=1, trs=1, plot_rx=False, init_gpa=True, dbg_sc=1)
-
-  #   zero_words = [0x00100480, 0x02100480, 0x04100480, 0x07100480]
-
-    turbo_spin_echo(trs=2, echos_per_tr=4, plot_sequence=False, tr_pause_duration=100000)
-
     # radial(trs=100, init_gpa=True, plot_rx=True)
-    print("TSE")
-    for i in range(10):
-        print(f"Durchlauf Nummer {i + 1}")
-        turbo_spin_echo(trs=2, echos_per_tr=4, plot_sequence=False, tr_pause_duration=100000)
-        time.sleep(2)
-    print("Done")
-    
-
+    # turbo_spin_echo(trs=2, echos_per_tr=4, plot_sequence=False, tr_pause_duration=100000)
+    print("done")
     if False:
         # Stress test: run lots of sequences on the server - should
         # take around a day
